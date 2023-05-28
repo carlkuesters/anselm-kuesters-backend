@@ -1,0 +1,23 @@
+{
+  "name": "anselm-kuesters",
+  "version": "0.0.1",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.0.2",
+    "@strapi/plugin-users-permissions": "4.0.2",
+    "@strapi/plugin-i18n": "4.0.2",
+    "mysql": "2.18.1"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "1e30c8b1-4ace-4532-9ddb-187dc7e5278e"
+  }
+}
