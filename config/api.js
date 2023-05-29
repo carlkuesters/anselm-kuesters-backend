@@ -1,7 +1,8 @@
 module.exports = {
   rest: {
-    defaultLimit: 25,
-    maxLimit: 100,
+    // Disable pagination
+    defaultLimit: 999999,
+    maxLimit: 999999,
     withCount: true,
   },
 };
