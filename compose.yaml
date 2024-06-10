@@ -1,0 +1,30 @@
+name: anselm-kuesters-backend
+services:
+  db:
+    image: mysql:8.4.0
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+    volumes:
+      - /home/destroflyer/anselm-kuesters/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 3s
+      retries: 0
+    restart: always
+  db-ui:
+    image: destrostudios/phpmyadmin
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - "1338:443"
+    restart: always
+  app:
+    build:
+      args:
+        DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+    ports:
+      - "1337:1337"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
