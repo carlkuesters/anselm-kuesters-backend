@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withCredentials([
                   string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
-                  file(credentialsId: 'anselm-kuesters-backend-env', variable: 'ENV_FILE')
+                  file(credentialsId: 'env-file', variable: 'ENV_FILE')
                 ]) {
                   sh 'cp $ENV_FILE .env'
                   sh 'docker compose build --no-cache'
