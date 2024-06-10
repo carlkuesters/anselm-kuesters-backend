@@ -29,17 +29,15 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                dir ('docker') {
-                  withCredentials([
-                    string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
-                    file(credentialsId: 'anselm-kuesters-backend-env', variable: 'ENV_FILE')
-                  ]) {
-                    sh 'cp $ENV_FILE .env'
-                    sh 'docker compose build --no-cache'
-                    sh 'docker compose up -d'
-                  }
+                withCredentials([
+                  string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
+                  file(credentialsId: 'anselm-kuesters-backend-env', variable: 'ENV_FILE')
+                ]) {
+                  sh 'cp $ENV_FILE .env'
+                  sh 'docker compose build --no-cache'
+                  sh 'docker compose up -d'
                 }
-            }
+              }
         }
     }
     post {
