@@ -20,6 +20,7 @@ services:
     restart: always
   app:
     build:
+      dockerfile: app.Dockerfile
       args:
         DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
     depends_on:
