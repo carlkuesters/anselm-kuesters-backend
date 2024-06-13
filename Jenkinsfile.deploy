@@ -29,15 +29,18 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                withCredentials([
-                  string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
-                  file(credentialsId: 'env-file', variable: 'ENV_FILE')
-                ]) {
-                  sh 'cp $ENV_FILE .env'
-                  sh 'docker compose build --no-cache'
-                  sh 'docker compose up -d'
+                sh 'mv build config database node_modules public src favicon.png package.json package-lock.json docker'
+                dir('docker') {
+                    withCredentials([
+                        string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
+                        file(credentialsId: 'env-file', variable: 'ENV_FILE')
+                    ]) {
+                        sh 'cp $ENV_FILE .env'
+                        sh 'docker compose build --no-cache'
+                        sh 'docker compose up -d'
+                    }
                 }
-              }
+            }
         }
     }
     post {

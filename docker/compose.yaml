@@ -20,11 +20,18 @@ services:
     restart: always
   app:
     build:
+      dockerfile: app.Dockerfile
       args:
         DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
-    ports:
-      - "1337:1337"
     depends_on:
       db:
         condition: service_healthy
+    restart: always
+  app-proxy:
+    build:
+      dockerfile: proxy.Dockerfile
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - "1337:443"
     restart: always
