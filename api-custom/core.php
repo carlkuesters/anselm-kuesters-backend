@@ -1,16 +1,7 @@
 <?php
-	$db = new MySQLDatabase("localhost", "root", $_ENV["DB_ROOT_PASSWORD"], "textscraping");
+	require_once(__DIR__ . "/core/core.php");
 
-	function getURLParameter($key, $defaultValue=false) {
-		return getArrayValue($_GET, $key, $defaultValue);
-	}
-
-	function getArrayValue($array, $key, $defaultValue=false) {
-		if (isset($array[$key])) {
-			return $array[$key];
-		}
-		return $defaultValue;
-	}
+	$db = new MySQLDatabase("db", 3306, "root", $_ENV["DB_ROOT_PASSWORD"], "textscraping");
 
 	function echoJsonResponse($response) {
 	  header('Access-Control-Allow-Origin: *');
