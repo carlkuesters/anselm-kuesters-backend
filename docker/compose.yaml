@@ -35,9 +35,9 @@ services:
     ports:
       - "1337:443"
     restart: always
-  custom-api:
+  api-custom:
     build:
-      dockerfile: custom-api.Dockerfile
+      dockerfile: api-custom.Dockerfile
     environment:
       DB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
     ports:

@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'mv custom-api build config database node_modules public src favicon.png package.json package-lock.json docker'
+                sh 'mv api-custom build config database node_modules public src favicon.png package.json package-lock.json docker'
                 dir('docker') {
                     withCredentials([
                         string(credentialsId: 'db-root-password', variable: 'DB_ROOT_PASSWORD'),
