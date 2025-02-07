@@ -28,8 +28,9 @@ services:
         condition: service_healthy
     restart: always
   app-proxy:
-    build:
-      dockerfile: proxy.Dockerfile
+    image: destrostudios/https-proxy
+    environment:
+      SERVER: app:1337
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
